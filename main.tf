@@ -7,5 +7,7 @@ resource "aws_subnet" "my_subnet" {
   cidr_block = cidrsubnet(var.subnet_cidr, 4, count.index)
   count = length(var.availability_zones)
 
-  availability_zone = var.availability_zones[count.index]
+variable "availability_zones" {
+  type    = list(string)
+  default = ["us-west-2a", "us-west-2b"] 
 }
